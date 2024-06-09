@@ -1,0 +1,7 @@
+{
+"baseUrls": {
+    "remote-dashboard":  "https://europe-west3-itcacademyeg.cloudfunctions.net/apiDashboard",
+   "remote": "https://europe-west3-itcacademyeg.cloudfunctions.net/apiCommerce",
+    "local": "http://127.0.0.1:5001/itcacademyeg/europe-west3/"
+}
+}
