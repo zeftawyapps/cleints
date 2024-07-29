@@ -389,15 +389,14 @@ class ListItem extends StatelessWidget {
                 ),
               ),
               MaterialButton(
-                onPressed: () {
-                  sendWhatsapp();
-                },
-                child: Icon(
-                  Icons.send,
-                  color: Colors.green,
-                  size: 10.sp,
-                )
-              ),
+                  onPressed: () {
+                    sendWhatsapp();
+                  },
+                  child: Icon(
+                    Icons.send,
+                    color: Colors.green,
+                    size: 10.sp,
+                  )),
             ],
           ))
         ],
@@ -492,105 +491,105 @@ class ListItem extends StatelessWidget {
     });
   }
 
-  Widget  lastDateStatus() {
-    int days = endDate.Daydifference( );
+  Widget lastDateStatus() {
+    int days = endDate.Daydifference();
     switch (days) {
       case > 60:
-        return  Container(
-          padding: const EdgeInsets.all(5),
-          decoration: BoxDecoration(
-            color: Colors.green,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Text("باقي على انتهاء الباقة اكثر من شهرين",
-              style: TextStyle(
-                  fontSize: 10.sp,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold)));
-      case > 30 && < 60:
-        return  Container(
-          padding: const EdgeInsets.all(5),
-          decoration: BoxDecoration(
-            color: Colors.green[500],
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Text("باقي على انتهاء الباقة اكثر من شهر",
-              style: TextStyle(
-                  fontSize: 10.sp,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold)));
-      case > 15 && < 30:
-        return  Container(
-          padding: const EdgeInsets.all(5),
-          decoration: BoxDecoration(
-            color: Colors.orange[600],
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Text("باقي على انتهاء الباقة اكثر من نصف شهر",
-              style: TextStyle(
-                  fontSize: 10.sp,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold)));
-      case > 7 && < 15:
-        return  Container(
-          padding: const EdgeInsets.all(5),
-          decoration: BoxDecoration(
-            color: Colors.orange[700],
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Text("باقي على انتهاء الباقة اكثر من اسبوع",
-              style: TextStyle(
-                  fontSize: 10.sp,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold)));
-      case > 3 && < 7:
-        return  Container(
-          padding: const EdgeInsets.all(5),
-          decoration: BoxDecoration(
-            color: Colors.red,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Text("باقي على انتهاء الباقة اكثر من 3 ايام",
-              style: TextStyle(
-                  fontSize: 10.sp,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold)));
-      case > 1 && < 3:
-        return  Container(
-          padding: const EdgeInsets.all(5),
-          decoration: BoxDecoration(
-            color: Colors.red[700],
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Text("باقي على انتهاء الباقة اكثر من يومين",
-              style: TextStyle(
-                  fontSize: 10.sp,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold)));
+        return Container(
+            padding: const EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              color: Colors.green,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text("باقي على انتهاء الباقة اكثر من شهرين",
+                style: TextStyle(
+                    fontSize: 10.sp,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold)));
+      case > 30 && <= 60:
+        return Container(
+            padding: const EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              color: Colors.green[500],
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text("باقي على انتهاء الباقة اكثر من شهر",
+                style: TextStyle(
+                    fontSize: 10.sp,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold)));
+      case > 15 && <= 30:
+        return Container(
+            padding: const EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              color: Colors.orange[600],
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text("باقي على انتهاء الباقة اكثر من نصف شهر",
+                style: TextStyle(
+                    fontSize: 10.sp,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold)));
+      case > 7 && <= 15:
+        return Container(
+            padding: const EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              color: Colors.orange[700],
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text("باقي على انتهاء الباقة اكثر من اسبوع",
+                style: TextStyle(
+                    fontSize: 10.sp,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold)));
+      case > 3 && <= 7:
+        return Container(
+            padding: const EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              color: Colors.red,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text("باقي على انتهاء الباقة اكثر من 3 ايام",
+                style: TextStyle(
+                    fontSize: 10.sp,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold)));
+      case > 1 && <= 3:
+        return Container(
+            padding: const EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              color: Colors.red[700],
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text("باقي على انتهاء الباقة اكثر من يومين",
+                style: TextStyle(
+                    fontSize: 10.sp,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold)));
       case < 1:
-        return  Container(
-          padding: const EdgeInsets.all(5),
-          decoration: BoxDecoration(
-            color: Colors.red[900],
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Text("لقد انتهت الباقة",
-              style: TextStyle(
-                  fontSize: 10.sp,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold)));
+        return Container(
+            padding: const EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              color: Colors.red[900],
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text("لقد انتهت الباقة",
+                style: TextStyle(
+                    fontSize: 10.sp,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold)));
       default:
-        return  Container(
-          padding: const EdgeInsets.all(5),
-          decoration: BoxDecoration(
-            color: Colors.grey,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Text("باقي على انتهاء الباقة اكثر من شهرين",
-              style: TextStyle(
-                  fontSize: 10.sp,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold)));
+        return Container(
+            padding: const EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              color: Colors.grey,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text("باقي على انتهاء الباقة اكثر من شهرين",
+                style: TextStyle(
+                    fontSize: 10.sp,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold)));
     }
   }
 }

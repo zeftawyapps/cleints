@@ -42,9 +42,13 @@ dependencies:
   cloud_firestore: ^4.17.5
   flutter_bloc: ^8.1.1
   JoDija_view:
-    path: ../../pruduct_under_work/jodija_view_module
+
+    git:
+     url: https://github.com/zeftawyapps/jodija_view_module.git
+
   JoDija_DataSource:
-    path: ../../pruduct_under_work/jodija_data_souce_module
+    git:
+     url: https://github.com/zeftawyapps/jodija_data_souce_module.git
 
 dev_dependencies:
   flutter_test:

@@ -20,12 +20,12 @@ class _InputScreenState extends State<InputScreen> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: Center(child: Text('اضافة عميل جديد'  ,style: TextStyle(color: Colors.white),)),
+        title: Center(child: Text(widget .  data == null ? 'اضافة عميل جديد' : "تعديل عمليل " ,style: TextStyle(color: Colors.white),)),
       ),
       body:   Container(
             child: Center(child: Container(
             width: MediaQuery.of(context).size.width * 0.8,
-                child: InputCleint()))),
+                child: InputCleint(data:  widget.data ,)))),
       );
   }
 }

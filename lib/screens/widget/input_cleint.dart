@@ -39,6 +39,18 @@ class _InputCleintState extends State<InputCleint> {
 
   DateTime endDate = DateTime.now();
   DateTime startDate = DateTime.now();
+  String? name, phone, phoneCard ;
+  @override
+  void initState() {
+    name = widget.data?.name;
+    phone = widget.data?.phone;
+    phoneCard = widget.data?.phoneCard;
+
+
+
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,8 +80,8 @@ class _InputCleintState extends State<InputCleint> {
                 height: 20.h,
               ),
               TextFomrFildValidtion(
-                initValue: widget.data?.name ?? null,
-                controller: nameContraller,
+                initValue: name  ?? null,
+                controller: nameContraller ,
                 form: form,
                 baseValidation: [RequiredValidator()],
                 keyData: 'name',
@@ -86,7 +98,7 @@ class _InputCleintState extends State<InputCleint> {
                 height: 20.h,
               ),
               TextFomrFildValidtion(
-                initValue: widget.data?.phone ?? null,
+                initValue: phone  ?? null,
                 controller: phoneContraller,
                 form: form,
                 baseValidation: [RequiredValidator()],
@@ -105,7 +117,9 @@ class _InputCleintState extends State<InputCleint> {
                 height: 20.h,
               ),
               TextFomrFildValidtion(
-                initValue: widget.data?.phoneCard ?? null,
+
+                initValue: phoneCard  ?? null,
+
                 controller: phoneCardContraller,
                 textInputType: TextInputType.phone,
                 form: form,

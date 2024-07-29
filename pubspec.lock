@@ -4,16 +4,20 @@ packages:
   JoDija_DataSource:
     dependency: "direct main"
     description:
-      path: "../../pruduct_under_work/jodija_data_souce_module"
-      relative: true
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: "283ce33c5e94d86c7a4500b6b4344a69a5a93861"
+      url: "https://github.com/zeftawyapps/jodija_data_souce_module.git"
+    source: git
     version: "0.0.1"
   JoDija_view:
     dependency: "direct main"
     description:
-      path: "../../pruduct_under_work/jodija_view_module"
-      relative: true
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: ca0c2e2708186ef6544ebaea0b24f5b00c27d32e
+      url: "https://github.com/zeftawyapps/jodija_view_module.git"
+    source: git
     version: "0.0.1"
   _flutterfire_internals:
     dependency: transitive
@@ -471,10 +475,10 @@ packages:
     dependency: transitive
     description:
       name: image_picker
-      sha256: b6951e25b795d053a6ba03af5f710069c99349de9341af95155d52665cb4607c
+      sha256: "021834d9c0c3de46bf0fe40341fa07168407f694d9b2bb18d532dc1261867f7a"
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.8.9"
+    version: "1.1.2"
   image_picker_android:
     dependency: transitive
     description:

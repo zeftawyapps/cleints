@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "76452784004",
+    "project_id": "client-reviwer",
+    "storage_bucket": "client-reviwer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76452784004:android:575b77899107a66f02dfd1",
+        "android_client_info": {
+          "package_name": "com.example.cleints"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFZrkOCN9FG7xiJTkVvGH_jWKWAYconGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
