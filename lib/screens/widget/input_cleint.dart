@@ -1,11 +1,15 @@
 import 'package:JoDija_view/util/validators/email_validator.dart';
 import 'package:JoDija_view/util/validators/required_validator.dart';
+import 'package:JoDija_view/util/widgits/bloc_provider.dart';
 import 'package:JoDija_view/util/widgits/data_source_bloc_widgets/data_source_bloc_listner.dart';
 import 'package:JoDija_view/util/widgits/input_form_validation/form_validations.dart';
 import 'package:JoDija_view/util/widgits/input_form_validation/widgets/dateTime_text_form_field_validation.dart';
 import 'package:JoDija_view/util/widgits/input_form_validation/widgets/text_form_vlidation.dart';
 import 'package:cleints/data/models/cleint_data_model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -34,19 +38,30 @@ class _InputCleintState extends State<InputCleint> {
   TextEditingController startDateContraller = TextEditingController();
 
   TextEditingController endDateContraller = TextEditingController();
+  TextEditingController serialNumberContraller = TextEditingController();
+  TextEditingController paymentDateContraller = TextEditingController();
+  TextEditingController typeOfSubscriptionContraller = TextEditingController();
+  TextEditingController noteContraller = TextEditingController();
 
   ClientBloc clientBloc = ClientBloc();
 
   DateTime endDate = DateTime.now();
   DateTime startDate = DateTime.now();
-  String? name, phone, phoneCard ;
+  DateTime paymentDate = DateTime.now();
+  String? name, phone, phoneCard;
+  String? serialNumber;
+
+  String? typeOfSubscription;
+  String? note;
+
   @override
   void initState() {
     name = widget.data?.name;
     phone = widget.data?.phone;
     phoneCard = widget.data?.phoneCard;
-
-
+    serialNumber = widget.data?.sirealNumber;
+    typeOfSubscription = widget.data?.SepscreptionType;
+    note = widget.data?.note;
 
     // TODO: implement initState
     super.initState();
@@ -80,8 +95,8 @@ class _InputCleintState extends State<InputCleint> {
                 height: 20.h,
               ),
               TextFomrFildValidtion(
-                initValue: name  ?? null,
-                controller: nameContraller ,
+                initValue: name ?? null,
+                controller: nameContraller,
                 form: form,
                 baseValidation: [RequiredValidator()],
                 keyData: 'name',
@@ -98,7 +113,7 @@ class _InputCleintState extends State<InputCleint> {
                 height: 20.h,
               ),
               TextFomrFildValidtion(
-                initValue: phone  ?? null,
+                initValue: phone ?? null,
                 controller: phoneContraller,
                 form: form,
                 baseValidation: [RequiredValidator()],
@@ -117,9 +132,7 @@ class _InputCleintState extends State<InputCleint> {
                 height: 20.h,
               ),
               TextFomrFildValidtion(
-
-                initValue: phoneCard  ?? null,
-
+                initValue: phoneCard ?? null,
                 controller: phoneCardContraller,
                 textInputType: TextInputType.phone,
                 form: form,
@@ -220,6 +233,88 @@ class _InputCleintState extends State<InputCleint> {
               SizedBox(
                 height: 20.h,
               ),
+              TextFomrFildValidtion(
+                initValue: serialNumber ?? "",
+                form: form,
+                controller: serialNumberContraller,
+                textInputType: TextInputType.number,
+                baseValidation: [RequiredValidator()],
+                keyData: 'serialNumber',
+                labalText: " الرقم التسلسلي ",
+                decoration: InputDecoration(
+                  prefixIcon: Icon(
+                    Icons.money,
+                    color: LightColors.iconColor,
+                  ),
+                ),
+                textStyle: TextStyle(),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              DateTimeTextFieldValidaion(
+                onChange: (v) {
+                  print(v);
+
+                  setState(() {
+                    paymentDate = v as DateTime;
+                  });
+                },
+                initDate: widget.data?.paymentDate ?? paymentDate,
+                firestDate: paymentDate,
+                lastDate: endDate.add(Duration(days: 360)),
+                form: form,
+                baseValidation: [RequiredValidator()],
+                keyData: 'paymentDate',
+                labalText: "تاريخ  السداد",
+                decoration: InputDecoration(
+                  prefixIcon: Icon(
+                    Icons.date_range,
+                    color: LightColors.iconColor,
+                  ),
+                ),
+                textStyle: TextStyle(),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              TextFomrFildValidtion(
+                initValue: typeOfSubscription ?? "",
+                controller: typeOfSubscriptionContraller,
+                form: form,
+                baseValidation: [RequiredValidator()],
+                keyData: 'serviceType',
+                labalText: "نوع الاشتراك",
+                decoration: InputDecoration().copyWith(
+                  prefixIcon: Icon(
+                    Icons.person,
+                    color: LightColors.iconColor,
+                  ),
+                ),
+                textStyle: TextStyle(),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              TextFomrFildValidtion(
+                initValue: note ?? "",
+                controller: noteContraller,
+                form: form,
+                baseValidation: [],
+                keyData: 'note',
+                labalText: "ملاحظات",
+                mulitLine: 3,
+                decoration: InputDecoration().copyWith(
+                  prefixIcon: Icon(
+                    Icons.person,
+                    color: LightColors.iconColor,
+                  ),
+                ),
+                textStyle: TextStyle(),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
               Row(
                 children: [
                   Expanded(
@@ -230,9 +325,49 @@ class _InputCleintState extends State<InputCleint> {
                         if (editData != null) {
                           var data = form.getInputData();
                           data['id'] = editData.id;
+
+                          bool chick = clientBloc.checkSerialNumberEdit(
+                              data['serialNumber'].toString(), data['id']);
+                          if (chick) {
+                            // alarm  dialog
+                            showDialog(context: context, builder:
+                            (context){
+                              return AlertDialog(
+                                title: Text('تحذير'),
+                                content: Text('الرقم التسلسلي موجود بالفعل'),
+                                actions: [
+                                  TextButton(onPressed: (){
+                                    Navigator.pop(context);
+                                  }, child: Text('موافق'))
+                                ],
+                              );
+                            }
+                            );
+
+                            return;
+                          }
                           clientBloc.editCleint(map: data);
                         } else {
                           var data = form.getInputData();
+                          bool chick = clientBloc.checkSerialNumber(
+                              data['serialNumber'].toString());
+                          if (chick) {
+                            showDialog(context: context, builder:
+                                (context){
+                              return AlertDialog(
+                                title: Text('تحذير'),
+                                content: Text('الرقم التسلسلي موجود بالفعل'),
+                                actions: [
+                                  TextButton(onPressed: (){
+                                    Navigator.pop(context);
+                                  }, child: Text('موافق'))
+                                ],
+                              );
+                            }
+                            );
+                            return;
+                          }
+
                           clientBloc.addCleint(map: data);
                         }
                       },

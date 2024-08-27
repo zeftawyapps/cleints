@@ -30,6 +30,9 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+/assets/json/
+/assets/json_config/
+/assets/json_config ignored/
 
 # Symbolication related
 app.*.symbols

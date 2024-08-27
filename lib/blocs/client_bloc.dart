@@ -23,6 +23,13 @@ class ClientBloc {
   String priceKey = "price";
   String startDateKey = "startDate";
   String endDateKey = "endDate";
+  String paymentDateKey = "paymentDate";
+  String SepscreptionTypeKey = "serviceType";
+  String sirealNumberKey = "serialNumber";
+  String noteKey = "note";
+
+  List<String>_serailization = [] ;
+
   DataSourceBloc<CleintDataModel> cleintBloc =
       DataSourceBloc<CleintDataModel>();
   DataSourceBloc<List<CleintDataModel>> listCleintBloc =
@@ -37,6 +44,12 @@ class ClientBloc {
       price: map[priceKey],
       startDate: map[startDateKey],
       endDate: map[endDateKey],
+      paymentDate: map[paymentDateKey],
+      sirealNumber: map[sirealNumberKey].toString(),
+      SepscreptionType: map[SepscreptionTypeKey],
+      note: map[noteKey],
+
+
     );
 
     CRUDrepo repo = CRUDrepo(
@@ -62,6 +75,10 @@ class ClientBloc {
       price: map[priceKey],
       startDate: map[startDateKey],
       endDate: map[endDateKey],
+      paymentDate: map[paymentDateKey],
+      sirealNumber: map[sirealNumberKey].toString(),
+      SepscreptionType: map[SepscreptionTypeKey],
+      note: map[noteKey],
     );
 
     CRUDrepo repo = CRUDrepo(
@@ -107,16 +124,22 @@ result.pick( onData: (v) {
       listData.forEach((e) {
  Timestamp stDate = e.map![startDateKey];
  Timestamp enDate = e.map![endDateKey];
+ Timestamp? paymentDate =e.map![paymentDateKey];
          list.add(CleintDataModel(
            id: e.id,
             name: e.map![nameKey],
             phone: e.map![phoneKey],
             phoneCard: e.map![phoneCardKey],
             price: e.map![priceKey],
+            sirealNumber: e.map![sirealNumberKey],
+            note: e.map![noteKey],
+            paymentDate:  paymentDate?.toDate(),
+            SepscreptionType: e.map![SepscreptionTypeKey],
+
             startDate: stDate.toDate(),
             endDate:  enDate.toDate()));
       });
-
+getSerilizationList(list);
       listCleintBloc.successState(list);
     }, onError: (error) {
       listCleintBloc.failedState(ErrorStateModel(message: error.message), () {});
@@ -136,4 +159,22 @@ result.pick( onData: (v) {
     );
     cleintBloc.successState(data);
   }
+
+
+
+void getSerilizationList(List<CleintDataModel>data ){
+
+  data.forEach((element) {
+    _serailization.add(element.sirealNumber??"");
+  });
+}
+bool checkSerialNumber(String serialNumber) {
+  return _serailization.contains(serialNumber);
+}
+bool checkSerialNumberEdit(String serialNumber , String id) {
+  return _serailization.contains(serialNumber) &&
+      _serailization.indexOf(serialNumber) != _serailization.indexOf(id);
+}
+
+
 }

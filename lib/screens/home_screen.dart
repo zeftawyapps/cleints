@@ -93,7 +93,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           price: data[i].price,
                           startDate: data[i].startDate,
                           endDate: data[i].endDate,
-                          screenType: screenType)
+                          screenType: screenType ,
+                  serialNumber: data[i].sirealNumber,
+                    note: data[i].note,
+                    paymentDate: data[i].paymentDate,
+                    typeOfSubscription: data[i].SepscreptionType,
+                  ).animate().fadeIn(
+                    duration: Duration(milliseconds: 500)
+
+                  )
                       : SizedBox(
                           height: 100.h,
                         );

@@ -23,6 +23,10 @@ class ListItem extends StatelessWidget {
     required this.startDate,
     required this.endDate,
     required this.screenType,
+    this.serialNumber,
+    this.paymentDate,
+    this.typeOfSubscription,
+    this.note,
   });
 
   String id;
@@ -33,10 +37,16 @@ class ListItem extends StatelessWidget {
   int price;
   DateTime startDate;
   DateTime endDate;
+  String? serialNumber;
+  DateTime? paymentDate;
+  String? typeOfSubscription;
+  String? note;
+
   ScreenType screenType = ScreenType.web;
   late CleintDataModel dataModel;
   int titlefontSize = 8;
   int datafontSize = 7;
+
   @override
   Widget build(BuildContext context) {
     return screenType == ScreenType.web
@@ -74,6 +84,29 @@ class ListItem extends StatelessWidget {
                       child: Row(
                         children: [
                           Expanded(
+                            child: Text("رقم تسلسلي:",
+                                style: TextStyle(
+                                    fontSize: titlefontSize.sp,
+                                    color: Colors.grey[800],
+                                    fontWeight: FontWeight.bold)),
+                          ),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Text(serialNumber ?? "",
+                                style: TextStyle(
+                                    fontSize: datafontSize.sp,
+                                    fontWeight: FontWeight.bold)),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Row(
+                        children: [
+                          Expanded(
                             child: Text("الاسم:",
                                 style: TextStyle(
                                     fontSize: titlefontSize.sp,
@@ -93,7 +126,6 @@ class ListItem extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Expanded(child: Container())
                   ],
                 ),
                 Row(
@@ -205,9 +237,62 @@ class ListItem extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Expanded(child: Container())
+                    Expanded(
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text("تاريخ السداد:",
+                                style: TextStyle(
+                                    fontSize: titlefontSize.sp,
+                                    color: Colors.grey[800])),
+                          ),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          Expanded(
+                              flex: 2,
+                              child: Text(paymentDate?.toStringFormat() ?? "",
+                                  style: TextStyle(fontSize: datafontSize.sp))),
+                        ],
+                      ),
+                    ),
+
                   ],
                 ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text("نوع الخدمة:",
+                          style: TextStyle(
+                              fontSize: titlefontSize.sp,
+                              color: Colors.grey[800])),
+                    ),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    Expanded(
+                        flex: 6,
+                        child: Text(typeOfSubscription ?? "",
+                            style: TextStyle(fontSize: datafontSize.sp))),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text("ملاحظات:",
+                          style: TextStyle(
+                              fontSize: titlefontSize.sp,
+                              color: Colors.grey[800])),
+                    ),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    Expanded(
+                        flex: 6,
+                        child: Text(note  ?? "",
+                            style: TextStyle(fontSize: datafontSize.sp))),
+                  ],
+                )
               ],
             ),
           ),
@@ -276,9 +361,29 @@ class ListItem extends StatelessWidget {
             child: Column(
               children: [
                 lastDateStatus(),
+               Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Text("رقم تسلسلي:",
+                          style: TextStyle(
+                              fontSize: 14.sp,
+                              color: Colors.grey[800],
+                              fontWeight: FontWeight.bold)),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Text(serialNumber ?? "",
+                          style: TextStyle(
+                              fontSize: 12.sp, fontWeight: FontWeight.bold)),
+                    ),
+                  ],
+               ),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
+
                     Expanded(
                       child: Text("الاسم:",
                           style: TextStyle(
@@ -362,8 +467,46 @@ class ListItem extends StatelessWidget {
                             style: TextStyle(fontSize: 12.sp))),
                   ],
                 ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text("تاريخ السداد:",
+                          style: TextStyle(
+                              fontSize: 14.sp, color: Colors.grey[800])),
+                    ),
+                    Expanded(
+                        flex: 2,
+                        child: Text(paymentDate?.toStringFormat() ?? "",
+                            style: TextStyle(fontSize: 12.sp))),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text("نوع الخدمة:",
+                          style: TextStyle(
+                              fontSize: 14.sp, color: Colors.grey[800])),
+                    ),
+                    Expanded(
+                        flex: 2,
+                        child: Text(typeOfSubscription ?? "",
+                            style: TextStyle(fontSize: 12.sp))),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text("ملاحظات:",
+                          style: TextStyle(
+                              fontSize: 14.sp, color: Colors.grey[800])),
+                    ),
+                    Expanded(
+                        flex: 2,
+                        child: Text(note ?? "",
+                            style: TextStyle(fontSize: 12.sp))),
               ],
             ),
+            ]),
           ),
           Expanded(
               child: Column(
@@ -453,6 +596,10 @@ class ListItem extends StatelessWidget {
       price: price,
       startDate: startDate,
       endDate: endDate,
+      paymentDate: paymentDate,
+      sirealNumber: serialNumber,
+      SepscreptionType: typeOfSubscription,
+      note: note,
     );
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return InputScreen(
@@ -472,6 +619,10 @@ class ListItem extends StatelessWidget {
       price: price,
       startDate: startDate,
       endDate: endDate,
+      paymentDate: paymentDate,
+      sirealNumber: serialNumber,
+      SepscreptionType: typeOfSubscription,
+      note: note,
     );
     showGeneralDialog(
       context: context,
