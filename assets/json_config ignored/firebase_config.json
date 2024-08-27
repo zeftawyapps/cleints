@@ -1,23 +1,23 @@
 {
 "firebaseConfig": {
     "dev": {
-        "apiKey": "AIzaSyDvqgIDZ_H7DRMCKcTDC53Eif6j8Xav556456vwM",
-        "authDomain": "itcacademyeg.firebaseapp.com",
-        "projectId": "itcacademyeg",
-        "storageBucket": "itcacademyeg.appspo5654655.com",
-        "messagingSenderId": "657510654888654488",
-        "appId": "1:657510291488:web:772cabebdc94363654564ba50445",
+        "apiKey": " ",
+        "authDomain": " m",
+        "projectId": " ",
+        "storageBucket": " ",
+        "messagingSenderId": " ",
+        "appId": " ",
         "measurementId": "G-NGSJ5TRWTT"
     } ,
-    "prod": {
-     "apiKey": "AIzaSyDvqgIDZ_H7DRMCKcTDC53Eif6j8Xav556456vwM",
-        "authDomain": "itcacademyeg.firebaseapp.com",
-        "projectId": "itcacademyeg",
-        "storageBucket": "itcacademyeg.appspo5654655.com",
-        "messagingSenderId": "657510654888654488",
-        "appId": "1:657510291488:web:772cabebdc94363654564ba50445",
+    "dev": {
+        "apiKey": " ",
+        "authDomain": " m",
+        "projectId": " ",
+        "storageBucket": " ",
+        "messagingSenderId": " ",
+        "appId": " ",
         "measurementId": "G-NGSJ5TRWTT"
-    }
+    } ,
 
 }
 }
